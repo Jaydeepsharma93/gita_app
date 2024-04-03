@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:share_extend/share_extend.dart';
 import 'package:gita_app/utils/gitalist.dart';
 
 class Shlok extends StatefulWidget {
@@ -108,12 +110,30 @@ class _ShlokState extends State<Shlok> {
                   style: TextStyle(fontSize: 21)),
             ),
             Container(
-              height: 15,
               decoration: BoxDecoration(
                   color: Colors.black,
                   borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(10),
                       bottomRight: Radius.circular(10))),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                 TextButton(onPressed: () {
+                   Clipboard.setData(ClipboardData(text: "${data[0]['chapters'][chapterIndex]['shloks'][index]['shlok']}${data[0]['chapters'][chapterIndex]['shloks'][index]['meaning']}"));
+                 }, child: Text("Copy",style: TextStyle(
+                   color: Colors.white,
+                   fontWeight: FontWeight.bold,
+                   fontSize: 20
+                 ))),
+                  TextButton(onPressed: () {
+                    ShareExtend.share("${data[0]['chapters'][chapterIndex]['shloks'][index]['shlok']}${data[0]['chapters'][chapterIndex]['shloks'][index]['meaning']}", 'text');
+                  }, child: Text("Share",style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20
+                  )))
+                ],
+              ),
             ),
           ],
         ),
