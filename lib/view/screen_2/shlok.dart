@@ -131,7 +131,7 @@ class _ShlokState extends State<Shlok> {
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                       fontSize: 20
-                  )))
+                  ))),
                 ],
               ),
             ),
